@@ -12,7 +12,6 @@ MISSING_FOLDER_PATH = f"{FOLDER_PATH}_missing"
 def get_file_type(file_path):
     """Determine and print the MIME type of the file."""
     file_type = filetype.guess(file_path)
-    print(f"File type = {file_type.mime}")
     return file_type
 
 def validate_file_contents(file1, file2):
