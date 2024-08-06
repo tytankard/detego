@@ -11,6 +11,21 @@ def main():
     return(f"File: {OUTPUT_FILE} succesfully hashed with hex: {hashed_hex}")
 
 def reconstruct_file(prefix, output, folder):
+    """
+    Reconstructs a file by concatenating multiple files from a specified folder.
+
+    This function reads files from the given folder with names following the 
+    pattern `output_i`, where `i` ranges from 1 to the number of files in the folder.
+    These files are concatenated in order and written to the `output` file.
+
+    Args:
+        prefix (str): The prefix used in the filenames to reconstruct the file.
+        output (str): The path to the output file where the reconstructed content will be saved.
+        folder (str): The directory where the source files are located.
+
+    Raises:
+        FileNotFoundError: If any expected file with the pattern `output_i` does not exist in the folder.
+    """
     items = listdir(folder)
     files_len = len([item for item in items if path.isfile(path.join(folder, item))])
     with open(output, 'wb') as output_file:
@@ -23,6 +38,18 @@ def reconstruct_file(prefix, output, folder):
                 raise FileNotFoundError
 
 def hash_file(file_name):
+    """
+    Computes the SHA-1 hash of a file.
+
+    This function reads the file specified by `file_name` in binary mode and computes
+    its SHA-1 hash, returning the hexadecimal representation of the hash.
+
+    Args:
+        file_name (str): The path to the file to be hashed.
+
+    Returns:
+        str: The hexadecimal SHA-1 hash of the file's contents.
+    """
     hash_obj = sha1()
     with open(file_name, 'rb') as f:
         while chunk := f.read(8192):
