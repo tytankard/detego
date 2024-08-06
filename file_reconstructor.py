@@ -9,13 +9,13 @@ def main():
     hashed_hex = hash_file(OUTPUT_FILE)
     return(f"File: {OUTPUT_FILE} succesfully hashed with hex: {hashed_hex}")
 
-def reconstruct_file(prefix, output):
-    items = listdir(FOLDER_PATH)
-    files_len = len([item for item in items if path.isfile(path.join(FOLDER_PATH, item))])
+def reconstruct_file(prefix, output, folder):
+    items = listdir(folder)
+    files_len = len([item for item in items if path.isfile(path.join(folder, item))])
 
     with open(output, 'wb') as output_file:
         for i in range(1, files_len + 1):
-            file_name = f"{FILE_PREFIX}_{i}"
+            file_name = f"{prefix}_{i}"
             with open(f"{FOLDER_PATH}/{file_name}", 'rb') as file:
                 output_file.write(file.read())
 
