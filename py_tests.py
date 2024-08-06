@@ -12,7 +12,7 @@ def validate_file_contents(file1, file2):
 def test_file_hash():
     """Hashes and verifies the hash_hex for a reconstructed file"""
     reconstruct_file(FILE_PREFIX, OUTPUT_FILE, FOLDER_PATH)
-    contents_match = validate_file_contents
+    contents_match = validate_file_contents(OUTPUT_FILE, COMPARISON_FILE)
     hash_hex = hash_file(OUTPUT_FILE)
     assert hash_hex == HASH_HEX, "Value does not match the correctly expected hash"
     assert contents_match, "File contents of reconstructed file does not match expected value"
