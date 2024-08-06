@@ -13,15 +13,6 @@ def main():
 def reconstruct_file(prefix, output, folder):
     items = listdir(folder)
     files_len = len([item for item in items if path.isfile(path.join(folder, item))])
-    print(f"Output = {output}")
-    if path.exists(output):
-        print("File already exists - deleting existing file before continuing")
-        try:
-            remove(output)
-            print(f"File {output} deleted successfully.")
-        except OSError as e:
-            print(f"Error: {e.strerror}")
-
     with open(output, 'wb') as output_file:
         for i in range(1, files_len + 1):
             file_name = f"{prefix}_{i}"
