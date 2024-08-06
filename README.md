@@ -12,3 +12,9 @@
 - In order to verify that a folders contents have succesfully been reconstructed and hashed correctly we can run the suite of tests included in this directory. To do this issue the following command:
     - python -m pytest py_tests.py
 
+## Reconstructing files
+
+- To reconstruct files located in 'SplitFile' run the command:
+    - python file_reconstructor
+
+## Future improvements
