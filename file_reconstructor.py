@@ -16,8 +16,11 @@ def reconstruct_file(prefix, output, folder):
     with open(output, 'wb') as output_file:
         for i in range(1, files_len + 1):
             file_name = f"{prefix}_{i}"
-            with open(f"{FOLDER_PATH}/{file_name}", 'rb') as file:
-                output_file.write(file.read())
+            if path.exists(f"{folder}/{file_name}"):
+                with open(f"{folder}/{file_name}", 'rb') as file:
+                    output_file.write(file.read())
+            else:
+                raise FileNotFoundError
 
 def hash_file(file_name):
     hash_obj = sha1()
