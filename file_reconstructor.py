@@ -3,11 +3,14 @@ from hashlib import sha1
 from constants import OUTPUT_FILE, FILE_PREFIX, FOLDER_PATH, FILE_SIGNATURES
 
 def main():
-    reconstruct_file(FILE_PREFIX, OUTPUT_FILE, FOLDER_PATH)
-    extension = get_file_extension(OUTPUT_FILE)
-    write_file(OUTPUT_FILE, extension)
-    hashed_hex = hash_file(OUTPUT_FILE)
-    return(f"File: {OUTPUT_FILE} succesfully hashed with hex: {hashed_hex}")
+    try:
+        reconstruct_file(FILE_PREFIX, OUTPUT_FILE, FOLDER_PATH)
+        extension = get_file_extension(OUTPUT_FILE)
+        write_file_with_extension(OUTPUT_FILE, extension)
+        hashed_hex = hash_file(OUTPUT_FILE)
+        return(f"File: {OUTPUT_FILE} succesfully hashed with hex: {hashed_hex}")
+    except Exception as e:
+        return f"An error occurred: {str(e)}"
 
 def reconstruct_file(prefix, output, folder):
     """
@@ -30,11 +33,12 @@ def reconstruct_file(prefix, output, folder):
     with open(output, 'wb') as output_file:
         for i in range(1, files_len + 1):
             file_name = f"{prefix}_{i}"
-            if path.exists(f"{folder}/{file_name}"):
-                with open(f"{folder}/{file_name}", 'rb') as file:
+            file_path = path.join(folder, file_name)
+            if path.exists(file_path):
+                with open(file_path, 'rb') as file:
                     output_file.write(file.read())
             else:
-                raise FileNotFoundError
+                raise FileNotFoundError(f"Expected file '{file_name}' not found in folder '{folder}'")
 
 def hash_file(file_name):
     """
@@ -55,7 +59,7 @@ def hash_file(file_name):
             hash_obj.update(chunk)
     return hash_obj.hexdigest()
 
-def write_file(file_path, extension):
+def write_file_with_extension(file_path, extension):
     """
     Writes the given file path and extension to a new file.
 
@@ -68,7 +72,7 @@ def write_file(file_path, extension):
             with open(f"{file_path}_extension.{extension}", 'wb') as output:
                 output.write(file.read())
     else:
-        raise FileNotFoundError
+        raise FileNotFoundError(f"The file '{file_path}' does not exist")
     
 def get_file_extension(file_path):
     """
