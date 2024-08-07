@@ -2,6 +2,9 @@
 FILE_PREFIX = "part"
 OUTPUT_FILE = "reconstructed_file"
 FOLDER_PATH = "SplitFile"
+HASH_HEX = "bd32dd329aef54c6e672089c5e301baf4b4600ed"
+COMPARISON_FILE = "comparison_file"
+INCOMPLETE_FILE_NAME = 'incomplete'
 
 FILE_SIGNATURES = {
     b'\xFF\xD8\xFF': 'jpg',

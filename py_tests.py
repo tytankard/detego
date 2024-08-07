@@ -1,10 +1,8 @@
 import pytest
 from file_reconstructor import reconstruct_file, hash_file, get_file_extension
-from constants import OUTPUT_FILE, FILE_PREFIX, FOLDER_PATH
+from constants import OUTPUT_FILE, FILE_PREFIX, FOLDER_PATH, HASH_HEX, COMPARISON_FILE, INCOMPLETE_FILE_NAME
+
 # Constants
-HASH_HEX = "bd32dd329aef54c6e672089c5e301baf4b4600ed"
-COMPARISON_FILE = "comparison_file"
-INCOMPLETE_FILE_NAME = 'incomplete'
 INCOMPLETE_FOLDER_PATH = f"{FOLDER_PATH}_incomplete"
 MISSING_FOLDER_PATH = f"{FOLDER_PATH}_missing"
 
