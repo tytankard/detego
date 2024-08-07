@@ -15,6 +15,8 @@
 ## Reconstructing files
 
 - To reconstruct files located in 'SplitFile' run the command:
-    - python file_reconstructor
+    - python file_reconstructor.py
 
 ## Future improvements
+
+- Add a CLI wrapper to the file_reconstructor script so that any file can be restructured
