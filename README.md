@@ -3,7 +3,8 @@
 ## Creating a virtual environment
 
 - To run the pytests a virtual environment is needed, to do this follow the below steps:
-    - Create virtual environment
+    - Ensure pip & python venv are installed on your computer
+    - Create virtual environment e.g. 'python -m venv venv'
     - Activate virtual environment
     - Install dependencies with the following command: "pip install -r requirements.txt"
 
