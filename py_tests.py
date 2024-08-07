@@ -1,18 +1,12 @@
 import pytest
-import filetype
-from file_reconstructor import FILE_PREFIX, OUTPUT_FILE, FOLDER_PATH, reconstruct_file, hash_file
-
+from file_reconstructor import reconstruct_file, hash_file, get_file_extension
+from constants import OUTPUT_FILE, FILE_PREFIX, FOLDER_PATH
 # Constants
 HASH_HEX = "bd32dd329aef54c6e672089c5e301baf4b4600ed"
 COMPARISON_FILE = "comparison_file"
 INCOMPLETE_FILE_NAME = 'incomplete'
 INCOMPLETE_FOLDER_PATH = f"{FOLDER_PATH}_incomplete"
 MISSING_FOLDER_PATH = f"{FOLDER_PATH}_missing"
-
-def get_file_type(file_path):
-    """Determine and print the MIME type of the file."""
-    file_type = filetype.guess(file_path)
-    return file_type
 
 def validate_file_contents(file1, file2):
     """Check if the contents of two files are identical."""
@@ -30,7 +24,7 @@ def test_file_hash():
 def test_file_type():
     """Verifies the file type of the reconstructed file."""
     reconstruct_file(FILE_PREFIX, OUTPUT_FILE, FOLDER_PATH)
-    assert get_file_type(OUTPUT_FILE).extension == "png", "The reconstructed file is not of type 'png'"
+    assert get_file_extension(OUTPUT_FILE) == "png", "The reconstructed file is not of type 'png'"
 
 def test_incomplete_hash():
     """Reconstructs an incomplete file and verifies its hash."""
