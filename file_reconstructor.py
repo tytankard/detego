@@ -69,7 +69,7 @@ def write_file_with_extension(file_path, extension):
     """
     if path.exists(file_path):
         with open(file_path, 'rb') as file:
-            with open(f"{file_path}_extension.{extension}", 'wb') as output:
+            with open(f"{file_path}.{extension}", 'wb') as output:
                 output.write(file.read())
     else:
         raise FileNotFoundError(f"The file '{file_path}' does not exist")
