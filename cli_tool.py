@@ -3,6 +3,39 @@ from os import path
 from file_reconstructor import reconstruct_file, hash_file, get_file_extension, write_file_with_extension
 
 def cli():
+    """
+    Command Line Interface (CLI) for reconstructing a file from split parts and optionally verifying its integrity.
+
+    This function provides a CLI that allows the user to specify a folder containing split files, 
+    a prefix used in the split filenames, and an output file name. The function reconstructs the 
+    original file by concatenating the split files in order and optionally verifies the integrity of 
+    the reconstructed file by computing its SHA-1 hash.
+
+    Command-line arguments:
+    -f, --folder (str): 
+        Path to the folder containing the split files. This argument is required.
+    
+    -p, --prefix (str): 
+        Prefix used in the split filenames (e.g., 'part' for files named 'part_1', 'part_2', etc.). 
+        This argument is required.
+    
+    -o, --output (str): 
+        Name of the output file to be reconstructed. This argument is required.
+    
+    -v, --verify (flag):
+        If provided, the function will compute the SHA-1 hash of the reconstructed file to verify 
+        its integrity. This argument is optional.
+
+    Raises:
+    FileNotFoundError:
+        If the specified folder does not exist or if any expected split files are missing.
+    
+    Exception:
+        For any other errors encountered during file reconstruction or hashing.
+
+    Returns:
+    Prints messages indicating the success or failure of the file reconstruction and hashing processes.
+    """
     parser = argparse.ArgumentParser(description="Reconstruct a file from split parts and optionally hash it.")
     
     parser.add_argument(
